@@ -1,5 +1,15 @@
-.h1{
+.h3{
     text-align: center;
-    font-family: "JetBrains Mono";
-    
+    font-family: "JetBrains Mono", serif;
+    display: inline-block;
+    max-width: 250px;
+}
+#sh{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#header_section{
+    justify-content: center;
+    margin: -.75rem; -.75rem;
 }

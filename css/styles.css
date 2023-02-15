@@ -1,0 +1,14 @@
+.h3{
+    text-align: center;
+    display: inline-block;
+    max-width: 250px;
+}
+.card-img-top {
+    object-fit: cover;
+}
+#header_section{
+    justify-content: center;
+}
+.ing{
+    height: 150px;
+}

@@ -1,0 +1,25 @@
+.h3{
+    text-align: center;
+    display: inline-block;
+    max-width: 250px;
+}
+<<<<<<< HEAD
+#sh{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: .75rem;
+=======
+.card-img-top {
+    object-fit: cover;
+>>>>>>> 72e2388 (update)
+}
+#header_section{
+    justify-content: center;
+}
+<<<<<<< HEAD
+=======
+.ing{
+    height: 150px;
+}
+>>>>>>> 72e2388 (update)

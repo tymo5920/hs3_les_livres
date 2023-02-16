@@ -1,14 +1,50 @@
 .h3{
-    text-align: center;
+
     display: inline-block;
     max-width: 250px;
 }
+body{
+    color: #1e2125;
+}
+#sh{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: .75rem;
+
 .card-img-top {
     object-fit: cover;
+
 }
 #header_section{
     justify-content: center;
 }
-.ing{
-    height: 150px;
+
+
+img{
+    max-height: 150px;
 }
+
+@media (min-width: 750px) {
+        .card-body{
+            height: 15rem;
+            margin: 3px;
+    }
+}
+}
+hr{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid black;
+}
+.card-img-top, img {
+    object-fit: scale-down; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+    width: 99%;
+    max-height: 200px;
+    margin-bottom: 1rem;
+    min-height: 200px;
+}
+
+

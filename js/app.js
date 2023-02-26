@@ -12,8 +12,25 @@ const API = (() => {
   }
 
   return {
-    async listShelves() {
+    listShelves() {
       return myFetch(`${BASE_PATH}/shelves?action=by-owners&owners=${USER_ID}`)
+        .then(response => response.json())
+    },
+    listBooks(offset = null) {
+      const paramsDefinition = {
+        action: 'by-users',
+        users: USER_ID,
+        offset
+      }
+
+      const params = new URLSearchParams();
+      for (const name in paramsDefinition) {
+        const value = paramsDefinition[name];
+        if (value != null)
+          params.append(name, value);
+      }
+
+      return myFetch(`${BASE_PATH}/items?${params.toString()}`)
         .then(response => response.json())
     }
   }
@@ -43,11 +60,55 @@ const loadShelves = async () => {
   return shelves;
 }
 
+const renderBook = (book) => {
+  const { _id, snapshot: details } = book;
+
+  const template = document.querySelector("template#tpl-book");
+  const clone = template.content.cloneNode(true);
+
+  clone.querySelector("div").id = `book-${_id}`;
+  clone.querySelector(".tpl-title").innerText = details['entity:title'];
+  clone.querySelector(".tpl-author").innerText = details['entity:authors'] ?? "";
+
+  if (details['entity:image']) {
+    clone.querySelector(".tpl-image").src = `https://inventaire.io${details['entity:image']}`;
+    clone.querySelector(".tpl-image").alt = details['entity:title'];
+  } else {
+    clone.querySelector(".tpl-image").style.display = "none";
+    clone.querySelector(".tpl-image-text").style.display = "block";
+  }
+
+  return clone;
+}
+
+const loadBooks = async (offset = 0) => {
+  console.log("load books with offset", offset);
+  const booksData = (await API.listBooks(offset));
+  let books = booksData.items;
+
+  for (const bookID in books) {
+    const book = books[bookID];
+    const bookNode = renderBook(book);
+    const shelfID = book.shelves[0];
+    const shelfNode = document.querySelector(`#shelf-${shelfID}`);
+
+    shelfNode.appendChild(bookNode);
+  }
+
+  // load more books if available
+  if (booksData.continue != null) {
+    books = [...books, await loadBooks(booksData.continue)];
+  }
+
+  return books;
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   if (!('content' in document.createElement('template'))) {
     alert("You need to update your browser in order to view this page!")
   }
 
+  // theese variables will be useful for filtering purpouse
   const shelves = await loadShelves();
-
+  const books = await loadBooks();
 })

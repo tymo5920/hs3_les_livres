@@ -82,7 +82,6 @@ const renderBook = (book) => {
 }
 
 const loadBooks = async (offset = 0) => {
-  console.log("load books with offset", offset);
   const booksData = (await API.listBooks(offset));
   let books = booksData.items;
 

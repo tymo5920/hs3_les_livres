@@ -1,21 +1,21 @@
-.h3{
-    text-align: center;
-    display: inline-block;
-    max-width: 250px;
+.h3 {
+  text-align: center;
+  display: inline-block;
+  max-width: 250px;
 }
-#sh{
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: .75rem;
+#sh {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.75rem;
 }
 .card-img-top {
-    object-fit: cover;
+  object-fit: cover;
 }
-#header_section{
-    justify-content: center;
+#header_section {
+  justify-content: center;
 }
 
-.ing{
-    height: 150px;
+.ing {
+  height: 150px;
 }
